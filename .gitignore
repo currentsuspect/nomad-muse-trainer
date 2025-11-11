@@ -13,7 +13,7 @@ venv/
 data/
 
 # Artifacts
-artifacts/checkpoints/
+artifacts/
 
 # IDE / Editor
 .vscode/

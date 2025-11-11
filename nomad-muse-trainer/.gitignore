@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Data
+*.npz
+data/
+
+# Artifacts
+artifacts/checkpoints/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo

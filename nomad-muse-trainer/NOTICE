@@ -1,0 +1,187 @@
+================================================================================
+                          NOMAD MUSE TRAINER
+                    Copyright (c) 2025 Nomad Studios
+================================================================================
+
+LICENSING NOTICE AND TERMS OF USE
+
+This repository contains software and other materials subject to different
+licensing terms. Please read this notice carefully.
+
+--------------------------------------------------------------------------------
+1. SOURCE CODE LICENSE (MIT License)
+--------------------------------------------------------------------------------
+
+The source code, training scripts, and implementation files in this repository
+are licensed under the MIT License. See the LICENSE file for full terms.
+
+This includes:
+  • Python source code in src/, scripts/, tests/, and examples/
+  • Configuration files (config.yaml, Makefile, etc.)
+  • Documentation and README files
+  • Setup and installation scripts
+
+You are free to use, modify, and distribute this code under the MIT License
+terms, subject to the restrictions below.
+
+--------------------------------------------------------------------------------
+2. PROPRIETARY ASSETS (NOT Open Source)
+--------------------------------------------------------------------------------
+
+The following materials are NOT covered by the MIT License and remain the
+exclusive proprietary property of Nomad Studios. You may NOT use, distribute,
+reproduce, modify, or create derivative works from these materials without
+explicit written permission from Nomad Studios:
+
+  A. TRAINED MODELS AND WEIGHTS
+     • All neural network model weights (.pt, .pth files)
+     • All quantized ONNX model files (.onnx)
+     • All model checkpoints and saved parameters
+     • All baseline model files (.bin files)
+     • Any pre-trained or fine-tuned model variants
+
+  B. DATASETS AND TRAINING DATA
+     • All MIDI files used for training
+     • All processed datasets (.npz files)
+     • All vocabulary files (vocab.json) generated from proprietary data
+     • All statistics and metadata derived from proprietary training
+
+  C. GENERATED ARTIFACTS
+     • All model outputs and generated content
+     • All evaluation results and metrics
+     • All sample MIDI files created by trained models
+     • All proprietary configurations and hyperparameter settings
+
+  D. TRADEMARKS AND BRAND ASSETS
+     • "Nomad Muse" name and trademark
+     • "Nomad Studios" name and trademark
+     • All logos, brand identities, and visual assets
+     • Any marketing materials or promotional content
+
+--------------------------------------------------------------------------------
+3. PERMITTED USE OF OPEN SOURCE CODE
+--------------------------------------------------------------------------------
+
+Under the MIT License, you MAY:
+  ✓ Use the code to train your own models on your own data
+  ✓ Modify and extend the training pipeline
+  ✓ Distribute modified versions of the code
+  ✓ Use the code in commercial projects
+  ✓ Create derivative works based on the code
+
+You MUST:
+  ✓ Include the MIT License and copyright notice in any distribution
+  ✓ Not use Nomad Studios' trademarks without permission
+  ✓ Not redistribute any proprietary assets listed above
+
+--------------------------------------------------------------------------------
+4. RESTRICTIONS ON PROPRIETARY ASSETS
+--------------------------------------------------------------------------------
+
+You MAY NOT, without explicit written permission from Nomad Studios:
+  ✗ Redistribute any pre-trained models or weights
+  ✗ Use, copy, or distribute any Nomad Studios datasets
+  ✗ Claim your models are "Nomad Muse" models
+  ✗ Use the "Nomad Muse" or "Nomad Studios" names in your products
+  ✗ Reverse-engineer, decompile, or extract data from proprietary models
+  ✗ Use proprietary assets for commercial purposes
+  ✗ Distribute any files from the artifacts/ directory created with
+    proprietary training data
+
+--------------------------------------------------------------------------------
+5. BRAND NAME AND TRADEMARK USAGE
+--------------------------------------------------------------------------------
+
+"Nomad Muse" and "Nomad Studios" are trademarks of Nomad Studios.
+
+You may reference these names in the following contexts ONLY:
+  • Acknowledging the source of the open-source code
+  • Academic citations and research references
+  • Technical documentation describing compatibility
+
+You may NOT:
+  • Use these names in a way that suggests endorsement
+  • Use these names as part of your own product or service names
+  • Register similar trademarks or domain names
+  • Imply any affiliation with Nomad Studios without permission
+
+--------------------------------------------------------------------------------
+6. CREATING YOUR OWN MODELS
+--------------------------------------------------------------------------------
+
+If you use this code to train your own models:
+  • You own the models you create with your own data
+  • You may license your models however you choose
+  • You should clearly distinguish your models from Nomad Muse models
+  • You must still comply with the MIT License for the code itself
+
+--------------------------------------------------------------------------------
+7. COMMERCIAL USE
+--------------------------------------------------------------------------------
+
+PERMITTED:
+  • Using the open-source code in commercial products
+  • Training commercial models with the code on your own data
+  • Offering services based on the code
+
+NOT PERMITTED (without licensing agreement):
+  • Redistributing Nomad Studios' trained models commercially
+  • Using Nomad Studios' proprietary datasets
+  • Marketing products as "Nomad Muse" or "powered by Nomad Muse"
+
+--------------------------------------------------------------------------------
+8. ATTRIBUTION
+--------------------------------------------------------------------------------
+
+When using this code, please attribute as follows:
+
+  "Based on Nomad Muse Trainer by Nomad Studios
+   (https://github.com/nomadstudios/nomad-muse-trainer)
+   Licensed under the MIT License."
+
+Do NOT attribute in a way that suggests endorsement or implies your work
+is an official Nomad Studios product.
+
+--------------------------------------------------------------------------------
+9. WARRANTY DISCLAIMER
+--------------------------------------------------------------------------------
+
+ALL MATERIALS IN THIS REPOSITORY, WHETHER OPEN SOURCE OR PROPRIETARY, ARE
+PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+Nomad Studios disclaims all warranties including, but not limited to:
+  • Warranties of merchantability
+  • Fitness for a particular purpose
+  • Non-infringement
+  • Accuracy or completeness of results
+  • Quality of generated outputs
+
+--------------------------------------------------------------------------------
+10. CONTACT AND LICENSING INQUIRIES
+--------------------------------------------------------------------------------
+
+For licensing inquiries regarding proprietary assets, commercial use, or
+trademark permissions, please contact:
+
+  Nomad Studios
+  Email: licensing@nomadstudios.example.com
+  Web: https://nomadstudios.example.com
+
+For questions about the open-source code license (MIT), please refer to the
+LICENSE file or open an issue on GitHub.
+
+--------------------------------------------------------------------------------
+11. MODIFICATIONS TO THESE TERMS
+--------------------------------------------------------------------------------
+
+Nomad Studios reserves the right to modify these terms at any time. Continued
+use of materials from this repository constitutes acceptance of any changes.
+
+--------------------------------------------------------------------------------
+
+Last Updated: October 27, 2025
+
+This notice must be included in all copies or substantial portions of the
+software and documentation.
+
+================================================================================

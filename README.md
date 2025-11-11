@@ -2,11 +2,11 @@
 
 🎵 **Train tiny CPU-friendly music models from MIDI for real-time inference in C++ DAWs**
 
-**by Nomad Studios**
+**by Dylan Makori**
 
 A production-ready pipeline for training lightweight neural music models and exporting them as quantized ONNX files for 100% local, CPU-based inference. Designed for embedding in Digital Audio Workstations (DAWs) and other real-time music applications.
 
-> **⚖️ Dual Licensing**: The source code is open-source under MIT License. Trained models, datasets, and brand assets remain proprietary. See [License](#license) section below.
+> **⚖️ License**: The source code is licensed under the Nomad Studios Source-Available License (NSSAL). See [License](#license) section below.
 
 ## Features
 
@@ -387,7 +387,6 @@ float* logits = output_tensors[0].GetTensorMutableData<float>();
 - [ ] VST3 plugin example
 
 ## License
-## License
 
 **Nomad Muse Trainer** uses a dual licensing model:
 
@@ -446,10 +445,10 @@ If you use this code in your research or products, please cite:
 ```bibtex
 @software{nomad_muse_trainer,
   title = {Nomad Muse Trainer: Lightweight Music Model Training Pipeline},
-  author = {Nomad Studios},
+  author = {Dylan Makori},
   year = {2025},
   url = {https://github.com/nomadstudios/nomad-muse-trainer},
-  note = {Code licensed under MIT License; models and data proprietary}
+  note = {Code licensed under NSSAL}
 }
 ```
 
@@ -471,8 +470,8 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-**Nomad Muse Trainer** is a product of **Nomad Studios**  
-Copyright © 2025 Nomad Studios. All rights reserved.
+**Nomad Muse Trainer** is a product of **Dylan Makori**  
+Copyright © 2025 Dylan Makori. All rights reserved.
 
 ---
 

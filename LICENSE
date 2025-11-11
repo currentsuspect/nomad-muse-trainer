@@ -1,41 +1,25 @@
-MIT License
+Nomad Studios Source-Available License (NSSAL)
+Version 1.0, November 2025
 
-Copyright (c) 2025 Nomad Studios
+Copyright (c) 2025 Dylan Makori
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+**DISCLAIMER**
+THIS IS NOT A STANDARD OR VETTED LICENSE AND IS NOT LEGAL ADVICE. THE AUTHOR OF THIS REPOSITORY IS NOT A LAWYER. THIS LICENSE IS PROVIDED "AS IS" AND YOU USE THE SOFTWARE AT YOUR OWN RISK. FOR ANY SERIOUS USE, CONSULT A LEGAL PROFESSIONAL.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+---
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Subject to the terms of this license, the copyright holder grants you ("Licensee") a non-exclusive, worldwide, non-transferable, royalty-free license to use, copy, and distribute the software and associated documentation files ("the Software").
 
-================================================================================
+The following conditions apply:
 
-IMPORTANT NOTICE REGARDING SCOPE OF LICENSE:
+1.  **Permitted Use**: You are permitted to use the Software to train your own machine learning models for any purpose, including commercial purposes.
 
-This MIT License applies ONLY to the source code, scripts, and training pipeline
-implementations contained in this repository.
+2.  **Restriction on Sale**: You may not sell, resell, rent, lease, or sublicense the Software itself, in whole or in part. This does not restrict you from selling models that you have trained using the Software.
 
-The following are NOT covered by this MIT License and remain proprietary and
-exclusively owned by Nomad Studios:
+3.  **Restriction on Modification**: You may not modify, adapt, or create derivative works of the Software.
 
-1. All trained model weights and parameters
-2. All datasets and training data
-3. All generated artifacts (ONNX models, vocabulary files, statistics, etc.)
-4. The "Nomad Muse" trademark and brand name
-5. The "Nomad Studios" trademark and brand name
-6. Any pre-trained models or model checkpoints
-7. Any proprietary configurations or tuned hyperparameters
+4.  **Contributions**: The only exception to the "Restriction on Modification" is for the purpose of contributing back to the original Software project. All contributions must be submitted via a pull request to the official repository and are subject to acceptance by the project maintainers. By submitting a contribution, you agree to license your contribution under the terms of the NSSAL.
 
-For complete details, see the NOTICE file in this repository.
+5.  **Attribution**: You must include the original copyright notice and a copy of this license in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

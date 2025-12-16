@@ -12,8 +12,8 @@ setup(
     description="Train tiny CPU-friendly music models from MIDI for DAW inference",
     long_description=readme,
     long_description_content_type="text/markdown",
-    author="Nomad Studios",
-    author_email="contact@nomadstudios.example.com",
+    author="Dylan Makori",
+    author_email="contact@example.com",
     url="https://github.com/nomadstudios/nomad-muse-trainer",
     packages=find_packages(),
     python_requires=">=3.11",
@@ -44,5 +44,5 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     keywords="music midi machine-learning onnx daw generation nomad-muse",
-    license="MIT (source code only; see NOTICE for proprietary assets)",
+    license="MIT",
 )

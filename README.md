@@ -6,7 +6,7 @@
 
 A production-ready pipeline for training lightweight neural music models and exporting them as quantized ONNX files for 100% local, CPU-based inference. Designed for embedding in Digital Audio Workstations (DAWs) and other real-time music applications.
 
-> **⚖️ License**: The source code is licensed under the Nomad Studios Source-Available License (NSSAL). See [License](#license) section below.
+> **⚖️ License**: The source code is licensed under the MIT License. See [License](#license) section below.
 
 ## Features
 
@@ -388,55 +388,27 @@ float* logits = output_tensors[0].GetTensorMutableData<float>();
 
 ## License
 
-**Nomad Muse Trainer** uses a dual licensing model:
+**Nomad Muse Trainer** is licensed under the **MIT License**.
 
-### 📄 Source Code: MIT License
+This means you are free to:
 
-The Python source code, training pipeline, and implementation scripts are licensed under the **MIT License**. You are free to use, modify, and distribute the code. See the [LICENSE](LICENSE) file for full details.
-
-**What's covered by MIT:**
-- All Python source code (src/, scripts/, tests/, examples/)
-- Configuration files and build scripts
-- Documentation and README files
-
-### 🔒 Proprietary Assets: All Rights Reserved
-
-The following materials are **NOT open-source** and remain the exclusive property of **Nomad Studios**:
-
-**What's NOT covered by MIT:**
-- ❌ Trained model weights and parameters
-- ❌ ONNX model files generated from proprietary training
-- ❌ Datasets and training data
-- ❌ Generated artifacts (vocab.json from proprietary data, etc.)
-- ❌ "Nomad Muse" and "Nomad Studios" trademarks
-- ❌ Pre-trained model checkpoints
-
-### ✅ What You CAN Do
-
-- ✓ Use the code to train your own models on your own data
+- ✓ Use the code for any purpose, including commercial
 - ✓ Modify and extend the training pipeline
 - ✓ Distribute the source code with attribution
+- ✓ Train your own models on your own data
 - ✓ Use the code in commercial projects
-- ✓ Own and license models you train yourself
 
-### ❌ What You CANNOT Do (Without Permission)
+See the [LICENSE](LICENSE) file for complete terms.
 
-- ✗ Redistribute Nomad Studios' trained models
-- ✗ Use Nomad Studios' proprietary datasets
-- ✗ Use "Nomad Muse" or "Nomad Studios" names in your products
-- ✗ Claim your models are official Nomad Muse models
+### Quick Summary
 
-### 📋 Complete Terms
+The MIT License is a permissive license that allows you to use, modify, and distribute this software freely. The only requirements are:
+- Include the original copyright notice
+- Include the license text in copies or substantial portions
 
-For complete licensing terms and restrictions, see:
-- [LICENSE](LICENSE) - MIT License for source code
-- [NOTICE](NOTICE) - Detailed terms for proprietary assets
+### What This Means
 
-### 📧 Licensing Inquiries
-
-For commercial licensing of proprietary models or trademark usage:
-- **Email**: licensing@nomadstudios.example.com
-- **Web**: https://nomadstudios.example.com
+You can use this software to train your own music models, modify the code for your needs, and even build commercial products with it. The trained models and datasets you create are your own to use and distribute as you wish.
 
 ## Citation
 
@@ -448,7 +420,7 @@ If you use this code in your research or products, please cite:
   author = {Dylan Makori},
   year = {2025},
   url = {https://github.com/nomadstudios/nomad-muse-trainer},
-  note = {Code licensed under NSSAL}
+  note = {Code licensed under MIT}
 }
 ```
 

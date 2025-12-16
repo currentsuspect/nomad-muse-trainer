@@ -1,0 +1,174 @@
+# nomad-muse-trainer Multi-Expert Configuration
+# Configuration for the multi-expert music generation system
+
+# Base tokenization (shared settings)
+tokenization:
+  time_shift_bins: 16   # Time discretization for all experts
+  time_shift_ms: 20     # Milliseconds per time shift unit
+  velocity_bins: 8      # Quantize MIDI velocity (0-127) into this many bins
+  duration_bins: 16     # Quantize note duration into this many bins
+  max_duration_ms: 2000 # Max duration to consider (ms)
+
+# Data preparation
+data:
+  sequence_length: 256    # Tokens per training sequence (shorter for experts)
+  min_midi_length: 32     # Minimum tokens to include a MIDI file
+  max_midi_length: 16384  # Maximum tokens per MIDI (truncate longer files)
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  seed: 42
+
+# Training configuration
+training:
+  batch_size: 16         # Batch size for training
+  epochs: 50             # Number of training epochs
+  learning_rate: 0.001   # Learning rate
+  weight_decay: 0.0001   # Weight decay for regularization
+  grad_clip: 1.0         # Gradient clipping threshold
+  early_stop_patience: 5 # Early stopping patience
+  checkpoint_dir: "artifacts/checkpoints"
+  device: "cuda"         # "cuda" or "cpu"
+  num_workers: 4         # Number of data loading workers
+
+# Multi-Expert Model Architectures
+# Each expert is optimized for its musical domain
+
+# MuseDrums - Percussion generation (small, fast)
+drums_model:
+  hidden_size: 64        # Smaller hidden size for speed
+  num_layers: 2          # Number of GRU layers
+  dropout: 0.2           # Dropout probability
+  groove_memory: 16      # Bars of groove memory
+
+# MuseHarmony - Chord progression generation (medium)
+harmony_model:
+  hidden_size: 96        # Medium hidden size
+  num_layers: 3          # More layers for harmonic complexity
+  dropout: 0.1           # Lower dropout for harmony stability
+  num_keys: 24           # 12 major + 12 minor keys
+  chord_embedding_dim: 32 # Dimension for chord embeddings
+
+# MuseMelody - Melodic generation (largest, most complex)
+melody_model:
+  hidden_size: 128       # Larger hidden size for melody complexity
+  num_layers: 3          # Deep architecture for musical understanding
+  dropout: 0.2           # Dropout for regularization
+  conditioning_dim: 64   # Dimension for harmony conditioning
+  pitch_range: 128       # MIDI pitch range (0-127)
+
+# Expert-specific tokenizers
+
+# MuseDrums tokenizer
+drums:
+  time_signature: [4, 4]    # Time signature (numerator, denominator)
+  max_bars: 16              # Maximum bars to support
+  velocity_bins: 8          # Velocity quantization levels
+  groove_memory_bars: 4     # Bars of groove memory
+
+# MuseHarmony tokenizer
+harmony:
+  max_bars: 16              # Maximum bars to support
+  include_keys: true        # Include key signature tokens
+  chord_qualities: ["maj", "min", "dom7", "min7", "maj7", "dim"]
+
+# MuseMelody tokenizer
+melody:
+  max_bars: 16              # Maximum bars to support
+  time_signature: [4, 4]    # Time signature
+  velocity_bins: 8          # Velocity quantization levels
+  duration_bins: 16         # Duration quantization levels
+  max_pitch: 127            # Maximum MIDI pitch
+  conditioning: "chord"     # "none", "chord", "key", or "both"
+
+# Legacy single-model configuration (for backward compatibility)
+models:
+  gru:
+    hidden_size: 128
+    num_layers: 2
+    dropout: 0.2
+  
+  transformer:
+    d_model: 256
+    nhead: 2
+    num_layers: 2
+    dim_feedforward: 512
+    dropout: 0.2
+
+# Baseline models
+baseline:
+  markov_order: 4
+  interval_bins: 25  # -12 to +12 semitones
+  smoothing: "witten-bell"
+
+# Export configuration
+export:
+  onnx_opset: 17
+  quantization: "dynamic"  # "dynamic" or "static"
+  per_expert_export: true  # Export each expert separately
+
+# Musical evaluation configuration
+evaluation:
+  # Standard metrics
+  top_k_values: [1, 3, 5, 10]
+  sample_length: 256       # Tokens to generate for demo
+  sample_temperature: 1.0
+  sample_primer_length: 16
+  
+  # Musical quality metrics
+  groove_stability_bars: 4 # Bars to analyze for groove stability
+  chord_progression_min_length: 3 # Minimum chord progression length
+  melody_phrase_length: 8  # Notes per phrase for analysis
+  memorization_ngram_size: 4 # N-gram size for memorization detection
+  
+  # Quality thresholds
+  min_chord_tone_ratio: 0.3 # Minimum chord-tone ratio for melodies
+  max_memorization_score: 0.8 # Maximum acceptable memorization score
+  groove_consistency_range: [0.3, 0.8] # Preferred groove consistency range
+
+# Multi-expert coordination
+coordination:
+  # Generation strategy
+  generation_mode: "sequential"  # "sequential", "parallel", or "conditioned"
+  
+  # Timing coordination
+  bar_length_beats: 4     # Beats per bar (assumes 4/4 time)
+  tempo_sync: true        # Synchronize tempo across experts
+  
+  # Conditioning
+  harmony_conditioning: true  # Use harmony to condition melody
+  drum_harmony_sync: true     # Sync drum timing with harmony
+  
+  # Quality control
+  min_expert_confidence: 0.5  # Minimum confidence per expert
+  ensemble_voting: false       # Use ensemble for final decisions
+
+# Performance optimization
+performance:
+  # Model size constraints
+  max_drums_params: 200000     # Maximum parameters for drums model
+  max_harmony_params: 300000   # Maximum parameters for harmony model
+  max_melody_params: 500000    # Maximum parameters for melody model
+  
+  # Inference optimization
+  batch_inference: true        # Use batched inference where possible
+  cache_conditioning: true     # Cache conditioning vectors
+  streaming_generation: true   # Support streaming generation
+  
+  # Memory optimization
+  gradient_checkpointing: false # Save memory at cost of computation
+  mixed_precision: false       # Use mixed precision training
+
+# Reproducibility and fingerprinting
+reproducibility:
+  # Data fingerprinting
+  hash_dataset: true          # Hash dataset for reproducibility
+  hash_config: true           # Hash configuration
+  
+  # Training fingerprinting
+  log_model_fingerprints: true
+  fingerprint_frequency: "epoch"  # "epoch", "batch", or "never"
+  
+  # Version tracking
+  track_git_hash: true
+  track_environment: true

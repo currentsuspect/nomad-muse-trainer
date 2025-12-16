@@ -15,6 +15,11 @@ from tqdm import tqdm
 import yaml
 
 from .model import create_model, count_parameters
+from .run_manager import (
+    generate_run_id, create_run_directory, save_config_resolved,
+    save_environment_info, save_dataset_fingerprint, MetricsLogger,
+    save_run_summary
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -68,6 +73,7 @@ class Trainer:
         val_loader: DataLoader,
         config: dict,
         checkpoint_dir: Path,
+        metrics_logger = None,
     ):
         """Initialize trainer.
         
@@ -77,12 +83,14 @@ class Trainer:
             val_loader: Validation data loader
             config: Configuration dictionary
             checkpoint_dir: Directory to save checkpoints
+            metrics_logger: Optional MetricsLogger instance
         """
         self.model = model
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.config = config
         self.checkpoint_dir = checkpoint_dir
+        self.metrics_logger = metrics_logger
         
         train_config = config.get('training', {})
         
@@ -351,6 +359,18 @@ class Trainer:
                 self.epochs_without_improvement += 1
                 logger.info(f"  No improvement for {self.epochs_without_improvement} epoch(s)")
             
+            # Log metrics if logger is available
+            if self.metrics_logger is not None:
+                perplexity = np.exp(val_loss)
+                self.metrics_logger.log_epoch(
+                    epoch=epoch,
+                    train_loss=train_loss,
+                    val_loss=val_loss,
+                    perplexity=perplexity,
+                    learning_rate=self.optimizer.param_groups[0]['lr'],
+                    epoch_time=epoch_time
+                )
+            
             # Save checkpoint (ALWAYS save for Codespace safety)
             self.save_checkpoint(is_best=is_best, force_save=True)
             
@@ -406,6 +426,7 @@ def main():
     parser.add_argument("--hidden", type=int, help="Hidden size for GRU (overrides config)")
     parser.add_argument("--layers", type=int, help="Number of layers (overrides config)")
     parser.add_argument("--resume", type=Path, help="Resume from checkpoint")
+    parser.add_argument("--run_dir", type=Path, help="Override run directory (default: artifacts/runs/<run_id>)")
     args = parser.parse_args()
     
     # Load config to determine device
@@ -516,16 +537,43 @@ def main():
     logger.info(f"  Model parameters: {num_params:,}")
     logger.info("")
     
-    # Create trainer
-    checkpoint_dir = Path(train_config.get('checkpoint_dir', 'artifacts/checkpoints'))
-    trainer = Trainer(model, train_loader, val_loader, config, checkpoint_dir)
+    # Generate run ID and setup run directory
+    run_id = generate_run_id(args.model, args.dataset, args.resume)
+    logger.info(f"Run ID: {run_id}")
+    
+    # Create run directory
+    if args.run_dir:
+        run_dir = args.run_dir
+        run_dir.mkdir(parents=True, exist_ok=True)
+    else:
+        run_dir = create_run_directory(run_id)
+    
+    logger.info(f"Run directory: {run_dir}")
+    
+    # Save run metadata
+    save_config_resolved(config, run_dir)
+    save_environment_info(run_dir)
+    save_dataset_fingerprint(args.dataset, run_dir)
+    
+    # Setup metrics logger
+    metrics_logger = MetricsLogger(run_dir)
+    
+    # Create trainer with run directory
+    checkpoint_dir = run_dir / "checkpoints"
+    trainer = Trainer(model, train_loader, val_loader, config, checkpoint_dir, metrics_logger)
     
     # Resume if requested
     if args.resume:
         trainer.load_checkpoint(args.resume)
     
-    # Train
+    # Train with metrics logging
     trainer.train()
+    
+    # Save run summary
+    summary = metrics_logger.get_summary()
+    save_run_summary(summary, run_dir)
+    
+    logger.info(f"Run complete! Summary saved to {run_dir / 'summary.json'}")
 
 
 if __name__ == "__main__":

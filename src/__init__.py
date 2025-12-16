@@ -1,17 +1,16 @@
-"""src package initialization."""
+"""src package initialization.
 
+This package provides core components for the Nomad Muse music generation system.
+All CLI scripts are import-safe - they only execute when run directly.
+"""
+
+# Import only core modules that should be available as libraries
 from . import vocab
-from . import data_prep
 from . import model
-from . import train
-from . import quantize_export
-from . import evaluate
+from . import data_prep
 
 __all__ = [
     "vocab",
-    "data_prep",
     "model",
-    "train",
-    "quantize_export",
-    "evaluate",
+    "data_prep",
 ]

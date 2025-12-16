@@ -32,6 +32,14 @@ def _json_default(o):
     return str(o)
 
 
+def extract_tempo_single(pm):
+    """Extract single BPM value from PrettyMIDI object."""
+    if hasattr(pm, "get_tempo_changes"):
+        times, bpms = pm.get_tempo_changes()
+        return float(bpms[0]) if len(bpms) else 120.0
+    return 120.0  # Default BPM
+
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -81,10 +89,7 @@ class MIDITokenizer:
             tempo = midi.estimate_tempo()
         except (ValueError, RuntimeError):
             # Fallback: use default tempo or extract from tempo changes
-            if midi.tempo_changes:
-                tempo = midi.tempo_changes[0].tempo
-            else:
-                tempo = 120.0  # Default BPM
+            tempo = extract_tempo_single(midi)
 
         # Clamp tempo to reasonable range
         tempo = max(40, min(240, tempo))

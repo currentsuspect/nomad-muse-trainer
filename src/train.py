@@ -113,13 +113,17 @@ class Trainer:
             weight_decay=train_config.get('weight_decay', 0.0001),
         )
         
-        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-            self.optimizer,
+        sched_kwargs = dict(
+            optimizer=self.optimizer,
             mode='min',
             factor=0.5,
             patience=3,
-            verbose=True,
         )
+
+        try:
+            self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(**sched_kwargs, verbose=True)
+        except TypeError:
+            self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(**sched_kwargs)
         
         # Loss function
         self.criterion = nn.CrossEntropyLoss(ignore_index=0)  # Assuming 0 is PAD
